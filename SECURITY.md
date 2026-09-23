@@ -1,0 +1,28 @@
+# Security Policy
+
+## Supported Versions
+
+| Version | Supported          |
+| ------- | ------------------ |
+| main    | :white_check_mark: |
+
+This is a static portfolio site (Vite + React). No backend is shipped in this repo.
+
+## Reporting a Vulnerability
+
+If you discover a security vulnerability, please report it responsibly:
+
+- **Email:** nisingizweluckyjunior@gmail.com
+- **Subject:** `[SECURITY] Lucky Portfolio - brief description`
+- Include: description, steps to reproduce, impact, and suggested fix if any.
+
+We will acknowledge within 48 hours and provide a timeline for a fix.
+
+Please do not open public issues for sensitive vulnerabilities. Use private email instead.
+
+## Disclosure
+
+Once fixed, we will publish a brief advisory in GitHub Security Advisories if applicable.
+
+Thank you for helping keep this project safe.
+# log 4/1000 - 2026-09-23 compliance update

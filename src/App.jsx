@@ -9,6 +9,8 @@ import Projects from "./components/Projects";
 import EducationCerts from "./components/EducationCerts";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import GlassOpacityControl from "./components/GlassOpacityControl";
+import { useTheme, useGlassOpacity } from "./hooks/useIOSPrefs";
 
 // Every element below is a literal direct child of this root, required by
 // LiquidGlass (glass elements must be root-direct, and only one root's

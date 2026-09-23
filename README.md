@@ -16,4 +16,4 @@ Personal portfolio for Nisingizwe Lucky Junior, Backend Developer from Rwanda. T
 - Sections: Nav, Hero, About, Skills, Projects, EducationCerts, Contact, Footer
 - Responsive design, motion-reduced fallback, accessible navigation
 
-## Project 
+## Project S

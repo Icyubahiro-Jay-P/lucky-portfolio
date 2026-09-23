@@ -34,4 +34,4 @@ npm run preview
 
 ## Scripts
 
-- dev - s
+- dev - st

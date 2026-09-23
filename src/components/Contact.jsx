@@ -41,7 +41,7 @@ export default function Contact() {
       >
         <a
           href={`mailto:${person.email}`}
-          className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-[var(--accent)] text-[#04241f] font-semibold"
+          className="wobble-hover flex items-center gap-3 px-4 py-3 rounded-2xl bg-[var(--accent)] text-[#04241f] font-semibold"
         >
           <Mail size={18} />
           {person.email}
@@ -51,7 +51,7 @@ export default function Contact() {
           href={`https://wa.me/${person.whatsapp}`}
           target="_blank"
           rel="noreferrer"
-          className="flex items-center gap-3 px-4 py-3 rounded-2xl border border-[var(--border)] text-[var(--text-h)]"
+          className="wobble-hover flex items-center gap-3 px-4 py-3 rounded-2xl border border-[var(--border)] text-[var(--text-h)]"
         >
           <MessageCircle size={18} />
           Chat on WhatsApp
@@ -60,7 +60,7 @@ export default function Contact() {
         <button
           type="button"
           onClick={copyEmail}
-          className="flex items-center gap-3 px-4 py-3 rounded-2xl border border-[var(--border)] text-[var(--text-h)] text-left"
+          className="wobble-hover flex items-center gap-3 px-4 py-3 rounded-2xl border border-[var(--border)] text-[var(--text-h)] text-left"
         >
           {copied ? <Check size={18} /> : <Copy size={18} />}
           {copied ? "Copied" : "Copy email address"}
@@ -70,7 +70,7 @@ export default function Contact() {
           href={person.github}
           target="_blank"
           rel="noreferrer"
-          className="flex items-center gap-3 px-4 py-3 rounded-2xl border border-[var(--border)] text-[var(--text-h)]"
+          className="wobble-hover flex items-center gap-3 px-4 py-3 rounded-2xl border border-[var(--border)] text-[var(--text-h)]"
         >
           <Link size={18} />
           {person.githubHandle}

@@ -28,4 +28,4 @@ Personal portfolio for Nisingizwe Lucky Junior, Backend Developer from Rwanda. T
 ```bash
 npm install
 npm run dev
-npm ru
+npm run

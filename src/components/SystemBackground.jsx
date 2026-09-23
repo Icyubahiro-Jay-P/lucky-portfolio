@@ -73,22 +73,46 @@ export default function SystemBackground({ reducedMotion }) {
         max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
     }
 
+    function onPointer(e) {
+      pointerRef.current.x = e.clientX / Math.max(1, width);
+      pointerRef.current.y = e.clientY / Math.max(1, height);
+    }
+
     resize();
     onScroll();
     window.addEventListener("resize", resize);
     window.addEventListener("scroll", onScroll, { passive: true });
+    if (!reducedMotion) window.addEventListener("pointermove", onPointer, { passive: true });
 
     function draw(time) {
       const { nodes, edges, packets } = graphRef.current;
       const intensity = 0.55 + 0.45 * scrollRef.current;
-      // Opaque fill, not clearRect: the glass shader's capture pipeline
-      // only sees this canvas's own pixels, never the page's CSS body
-      // background, so the dark backdrop has to be painted here or every
-      // glass panel refracts white (the library's capture base fill).
-      ctx.fillStyle = "#0a0e14";
+      const isLight = document.documentElement.getAttribute("data-theme") === "light";
+      // iOS 26 fill adapts to light/dark like glass tint, performance: single fillRect
+      ctx.fillStyle = isLight ? "#f2f4f8" : "#0a0e14";
       ctx.fillRect(0, 0, width, height);
 
-      ctx.strokeStyle = "rgba(45, 212, 191, 0.45)";
+      // Specular light that follows pointer - iOS 26 highlight layer, very cheap radial
+      if (!reducedMotion) {
+        const lx = pointerRef.current.x * width;
+        const ly = pointerRef.current.y * height;
+        const g = ctx.createRadialGradient(lx, ly, 0, lx, ly, Math.max(width, height) * 0.8);
+        if (isLight) {
+          g.addColorStop(0, "rgba(255,255,255,0.22)");
+          g.addColorStop(0.35, "rgba(255,255,255,0.06)");
+          g.addColorStop(1, "rgba(255,255,255,0)");
+        } else {
+          g.addColorStop(0, "rgba(45,212,191,0.08)");
+          g.addColorStop(0.4, "rgba(45,212,191,0.03)");
+          g.addColorStop(1, "rgba(0,0,0,0)");
+        }
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, width, height);
+      }
+
+      ctx.strokeStyle = document.documentElement.getAttribute("data-theme") === "light"
+        ? "rgba(13, 148, 136, 0.32)"
+        : "rgba(45, 212, 191, 0.45)";
       ctx.lineWidth = 1.5;
       edges.forEach(({ a, b }) => {
         ctx.beginPath();

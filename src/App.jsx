@@ -22,6 +22,9 @@ function App() {
   const rootRef = useRef(null);
   const mode = useGlassMode();
   useLiquidGlassInit(rootRef, mode.supportsGlass);
+  // Initialize iOS theme + glass slider prefs (persisted, system-synced)
+  useTheme();
+  useGlassOpacity();
 
   return (
     <div ref={rootRef} className="relative">
@@ -34,6 +37,7 @@ function App() {
       <EducationCerts />
       <Contact />
       <Footer />
+      <GlassOpacityControl />
     </div>
   );
 }

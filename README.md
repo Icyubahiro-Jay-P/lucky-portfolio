@@ -1,1 +1,1 @@
-# LUCKY - Nisingizwe Lucky Junio
+# LUCKY - Nisingizwe Lucky Junior

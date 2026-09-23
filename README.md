@@ -1,1 +1,1 @@
-# LUCKY - Nisingizwe L
+# LUCKY - Nisingizwe Lu

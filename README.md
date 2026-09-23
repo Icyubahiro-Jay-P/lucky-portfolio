@@ -1,1 +1,1 @@
-# LUCKY - Nisingizwe Lucky J
+# LUCKY - Nisingizwe Lucky Ju

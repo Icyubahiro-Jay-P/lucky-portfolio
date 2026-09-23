@@ -4,4 +4,4 @@ Personal portfolio for Nisingizwe Lucky Junior, Backend Developer from Rwanda. T
 
 ## Tech Stack
 
-- React 19 + Vit
+- React 19 + Vite

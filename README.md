@@ -1,1 +1,1 @@
-# LUCKY - Nisingizwe Lucky Junior Por
+# LUCKY - Nisingizwe Lucky Junior Port

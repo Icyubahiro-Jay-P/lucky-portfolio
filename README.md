@@ -1,3 +1,3 @@
 # LUCKY - Nisingizwe Lucky Junior Portfolio
 
-Personal portfolio for Nisingizwe Lucky Junior, Backend Developer from Rwand
+Personal portfolio for Nisingizwe Lucky Junior, Backend Developer from Rwanda

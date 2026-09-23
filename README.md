@@ -35,4 +35,4 @@ npm run preview
 ## Scripts
 
 - dev - start Vite dev server
-- build - production buil
+- build - production build

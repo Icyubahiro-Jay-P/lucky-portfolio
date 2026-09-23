@@ -5,4 +5,4 @@ Personal portfolio for Nisingizwe Lucky Junior, Backend Developer from Rwanda. T
 ## Tech Stack
 
 - React 19 + Vite 8 with HMR
-- Tailwind CSS 4 via @tailwindcss/vi
+- Tailwind CSS 4 via @tailwindcss/vit

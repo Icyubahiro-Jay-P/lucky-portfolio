@@ -8,4 +8,4 @@ Personal portfolio for Nisingizwe Lucky Junior, Backend Developer from Rwanda. T
 - Tailwind CSS 4 via @tailwindcss/vite
 - Liquid Glass via @ybouane/liquidglass
 - Lucide React icons
-- ES
+- ESL

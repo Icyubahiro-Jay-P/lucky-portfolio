@@ -1,1 +1,1 @@
-# LUCKY - Nisingi
+# LUCKY - Nisingiz

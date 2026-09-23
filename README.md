@@ -1,1 +1,1 @@
-# LUCKY - Nisingizwe Lucky Junior P
+# LUCKY - Nisingizwe Lucky Junior Po

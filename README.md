@@ -1,1 +1,1 @@
-# LUCKY - Nisingizw
+# LUCKY - Nisingizwe

@@ -1,3 +1,3 @@
 # LUCKY - Nisingizwe Lucky Junior Portfolio
 
-Personal portfolio for Nisingizwe Lucky Junior, Backen
+Personal portfolio for Nisingizwe Lucky Junior, Backend

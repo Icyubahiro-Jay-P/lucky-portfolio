@@ -32,4 +32,4 @@ npm run build
 npm run preview
 ```
 
-## Sc
+## Scr

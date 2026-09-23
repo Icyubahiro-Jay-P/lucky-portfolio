@@ -1,3 +1,3 @@
 # LUCKY - Nisingizwe Lucky Junior Portfolio
 
-Personal portfolio for Nisin
+Personal portfolio for Nising

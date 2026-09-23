@@ -1,3 +1,3 @@
 # LUCKY - Nisingizwe Lucky Junior Portfolio
 
-Personal portfolio for Nisingizwe Lu
+Personal portfolio for Nisingizwe Luc

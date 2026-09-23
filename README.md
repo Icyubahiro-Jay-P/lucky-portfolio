@@ -34,4 +34,4 @@ npm run preview
 
 ## Scripts
 
-- dev - start Vi
+- dev - start Vit

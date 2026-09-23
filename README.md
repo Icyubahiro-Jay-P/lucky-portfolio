@@ -12,4 +12,4 @@ Personal portfolio for Nisingizwe Lucky Junior, Backend Developer from Rwanda. T
 
 ## Features
 
-- Flat root layout required by LiquidGlass - all glass panels refract 
+- Flat root layout required by LiquidGlass - all glass panels refract t

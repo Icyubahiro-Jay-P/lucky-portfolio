@@ -34,4 +34,4 @@ npm run preview
 
 ## Scripts
 
-- dev - start Vite de
+- dev - start Vite dev

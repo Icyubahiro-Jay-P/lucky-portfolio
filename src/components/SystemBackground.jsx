@@ -46,6 +46,7 @@ export default function SystemBackground({ reducedMotion }) {
   const canvasRef = useRef(null);
   const graphRef = useRef(null);
   const scrollRef = useRef(0);
+  const pointerRef = useRef({ x: 0.5, y: 0.35 });
 
   useEffect(() => {
     const canvas = canvasRef.current;

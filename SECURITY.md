@@ -27,3 +27,4 @@ Once fixed, we will publish a brief advisory in GitHub Security Advisories if ap
 Thank you for helping keep this project safe.
 # log 4/1000 - 2026-09-23 compliance update
 # log 9/1000 - 2026-09-23 compliance update
+# log 14/1000 - 2026-09-23 compliance update

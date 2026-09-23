@@ -38,13 +38,13 @@ export default function Hero() {
       >
         <a
           href="#projects"
-          className="flex items-center justify-center gap-2 flex-1 px-5 py-3 rounded-2xl bg-[var(--accent)] text-[#04241f] font-semibold"
+          className="wobble-hover flex items-center justify-center gap-2 flex-1 px-5 py-3 rounded-2xl bg-[var(--accent)] text-[#04241f] font-semibold"
         >
           View Projects <ArrowRight size={16} />
         </a>
         <a
           href="#contact"
-          className="flex items-center justify-center gap-2 flex-1 px-5 py-3 rounded-2xl border border-[var(--border)] text-[var(--text-h)] font-medium"
+          className="wobble-hover flex items-center justify-center gap-2 flex-1 px-5 py-3 rounded-2xl border border-[var(--border)] text-[var(--text-h)] font-medium"
         >
           Get in Touch <Mail size={16} />
         </a>

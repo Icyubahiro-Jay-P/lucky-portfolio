@@ -24,3 +24,4 @@ Personal portfolio for Nisingizwe Lucky Junior, Backend Developer from Rwanda. T
 - src/data/content.js - person, skills, projects, education
 
 ## Getting Started
+

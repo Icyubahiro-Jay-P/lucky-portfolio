@@ -1,1 +1,1 @@
-# LUCKY - Nisingizwe Lucky Junior Portfoli
+# LUCKY - Nisingizwe Lucky Junior Portfolio

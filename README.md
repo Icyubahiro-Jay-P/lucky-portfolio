@@ -20,4 +20,4 @@ Personal portfolio for Nisingizwe Lucky Junior, Backend Developer from Rwanda. T
 
 - src/App.jsx - flat root with SystemBackground and section order
 - src/components/ - Nav, Hero, About, Skills, Projects, etc.
-- src
+- src/

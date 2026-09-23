@@ -163,6 +163,7 @@ export default function SystemBackground({ reducedMotion }) {
     return () => {
       window.removeEventListener("resize", resize);
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("pointermove", onPointer);
       if (raf) cancelAnimationFrame(raf);
     };
   }, [reducedMotion]);

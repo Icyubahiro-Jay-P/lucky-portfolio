@@ -1,1 +1,1 @@
-# LUCKY - Nis
+# LUCKY - Nisi

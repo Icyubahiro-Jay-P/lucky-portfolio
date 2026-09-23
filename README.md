@@ -41,4 +41,4 @@ npm run preview
 
 ## Author
 
-Nisingizwe Lucky Junior - ni
+Nisingizwe Lucky Junior - nis

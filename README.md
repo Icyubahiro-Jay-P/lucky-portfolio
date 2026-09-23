@@ -9,3 +9,4 @@ Personal portfolio for Nisingizwe Lucky Junior, Backend Developer from Rwanda. T
 - Liquid Glass via @ybouane/liquidglass
 - Lucide React icons
 - ESLint + React Hooks + React Refresh
+

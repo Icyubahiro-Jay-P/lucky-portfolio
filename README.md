@@ -37,4 +37,4 @@ npm run preview
 - dev - start Vite dev server
 - build - production build
 - preview - preview built app
-- lint - 
+- lint - r

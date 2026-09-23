@@ -8,12 +8,9 @@ export default function Projects() {
         id="projects"
         className="relative z-10 px-6 pt-16 pb-2 text-center"
       >
-        <p className="text-sm uppercase tracking-widest text-[var(--accent)] mb-2">
-          Deployed systems
-        </p>
+        <p className="eyebrow mb-2">Deployed systems</p>
         <p className="text-sm text-[var(--text-dim)] max-w-md mx-auto mb-12">
-          Bracketed fields are placeholders: real summaries, stacks, and
-          links go here.
+          Systems shaped for uptime, clarity and maintainability.
         </p>
       </section>
       {projects.map((project) => (

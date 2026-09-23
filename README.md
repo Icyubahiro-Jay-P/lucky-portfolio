@@ -41,4 +41,4 @@ npm run preview
 
 ## Author
 
-Nisingizwe Lu
+Nisingizwe Luc

@@ -23,4 +23,4 @@ Personal portfolio for Nisingizwe Lucky Junior, Backend Developer from Rwanda. T
 - src/hooks/useLiquidGlass.js - glass mode and init
 - src/data/content.js - person, skills, projects, education
 
-## Gettin
+## Getting

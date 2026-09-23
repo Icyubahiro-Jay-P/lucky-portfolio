@@ -1,1 +1,1 @@
-# LUCK
+# LUCKY

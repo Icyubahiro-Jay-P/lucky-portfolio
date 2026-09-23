@@ -21,7 +21,7 @@ export default function Nav() {
     >
       <a
         href="#top"
-        className="px-3 py-1.5 text-sm font-semibold text-[var(--text-h)]"
+        className="wobble-hover inline-flex px-3 py-1.5 text-sm font-semibold text-[var(--text-h)]"
       >
         NLJ
       </a>
@@ -30,7 +30,7 @@ export default function Nav() {
           <a
             key={link.href}
             href={link.href}
-            className="px-3 py-1.5 rounded-full text-sm text-[var(--text)] hover:text-[var(--text-h)] transition-colors"
+            className="wobble-hover inline-flex px-3 py-1.5 rounded-full text-sm text-[var(--text)] hover:text-[var(--text-h)] transition-colors"
           >
             {link.label}
           </a>

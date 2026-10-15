@@ -1,45 +1,84 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGlassMode, useLiquidGlassInit } from "./hooks/useLiquidGlass";
-import SystemBackground from "./components/SystemBackground";
-import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import EducationCerts from "./components/EducationCerts";
+import Work from "./components/Work";
+import Stack from "./components/Stack";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import GlassOpacityControl from "./components/GlassOpacityControl";
-import { useTheme, useGlassOpacity } from "./hooks/useIOSPrefs";
+import GlassBar from "./components/GlassBar";
 
-// Every element below is a literal direct child of this root, required by
-// LiquidGlass (glass elements must be root-direct, and only one root's
-// worth of direct children ever shares a compositing canvas). Keeping the
-// whole page flat here, in visual/document order, lets every glass panel
-// refract the same SystemBackground canvas. See the plan's "Critical
-// architecture constraint" section for why this can't be nested wrappers.
-function App() {
+const SECTIONS = ["about", "work", "stack", "contact"];
+// Distance from the viewport bottom to the bar's top edge (16px gap + 56px bar).
+const BAR_CLEARANCE = 80;
+
+// Every child of rootRef is a direct child of the LiquidGlass root: glass
+// must be root-direct, and everything the bar should refract must be a
+// sibling of it. Keep this flat.
+export default function App() {
   const rootRef = useRef(null);
   const mode = useGlassMode();
   useLiquidGlassInit(rootRef, mode.supportsGlass);
-  // Initialize iOS theme + glass slider prefs (persisted, system-synced)
-  useTheme();
-  useGlassOpacity();
+
+  const [overMedia, setOverMedia] = useState(true);
+  const [active, setActive] = useState("");
+
+  // Clear glass while the bar floats over the portrait, regular after.
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const hero = document.getElementById("top");
+      if (!hero) return;
+      setOverMedia(hero.getBoundingClientRect().bottom > window.innerHeight - BAR_CLEARANCE);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  // Selected tab follows the section crossing the middle of the viewport.
+  useEffect(() => {
+    const els = SECTIONS.map((id) => document.getElementById(id)).filter(Boolean);
+    const obs = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) if (e.isIntersecting) setActive(e.target.id);
+      },
+      { rootMargin: "-50% 0px -50% 0px" }
+    );
+    els.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
 
   return (
-    <div ref={rootRef} className="relative">
-      <SystemBackground reducedMotion={mode.reducedMotion} />
-      <Nav />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <EducationCerts />
-      <Contact />
-      <Footer />
-      <GlassOpacityControl />
-    </div>
+    <>
+      <a
+        href="#about"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-full focus:bg-raised focus:px-4 focus:py-2"
+      >
+        Skip to content
+      </a>
+      <main ref={rootRef} className="relative">
+        {/* The root's own background is never captured, so the page color
+            lives in a sibling the bar can refract. */}
+        <div aria-hidden="true" className="absolute inset-0 z-0 bg-surface" />
+        <Hero />
+        <About />
+        <Work />
+        <Stack />
+        <Contact />
+        <Footer />
+        <GlassBar glass={mode.supportsGlass} overMedia={overMedia} active={overMedia ? "" : active} />
+      </main>
+      <div aria-hidden="true" className="edge-fade" style={{ opacity: overMedia ? 0 : 1 }} />
+    </>
   );
 }
-
-export default App;

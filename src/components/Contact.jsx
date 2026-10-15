@@ -20,10 +20,10 @@ export default function Contact() {
     <>
       <section
         id="contact"
-        className="relative z-10 px-6 pt-24 pb-2 flex flex-col items-center"
+        className="relative z-10 px-6 pt-24 pb-8 flex flex-col items-center"
       >
-        <p className="eyebrow mb-2 text-center">Establish a connection</p>
-        <h2 className="text-2xl sm:text-3xl tracking-tight font-semibold mb-10 text-center text-[var(--text-h)]">
+        <p className="eyebrow mb-4 text-center">Establish a connection</p>
+        <h2 className="text-gradient text-[clamp(1.7rem,4.5vw,2.5rem)] leading-[1.12] tracking-[-0.03em] font-semibold mb-10 max-w-lg text-center text-balance">
           Let&apos;s build something that has to work.
         </h2>
       </section>
@@ -32,26 +32,22 @@ export default function Contact() {
         tier="primary"
         variant="tinted"
         glassMorph
-        config={{
-          cornerRadius: 28,
-          blurAmount: 0.24,
-          brightness: -0.07,
-        }}
-        className="relative z-10 w-full max-w-md mx-auto mb-8 p-6 flex flex-col gap-3"
+        config={{ cornerRadius: 30, zRadius: 26 }}
+        className="relative z-10 w-full max-w-md mx-auto mb-10 p-4 sm:p-5 flex flex-col gap-3"
       >
         <a
           href={`mailto:${person.email}`}
-          className="morph-hover flex items-center gap-3 px-4 py-3 rounded-2xl bg-[var(--accent)] text-[#04241f] font-semibold shadow-sm"
+          className="btn btn-primary morph-hover w-full px-5 py-3.5 text-sm"
         >
           <Mail size={18} />
-          {person.email}
+          <span className="truncate">{person.email}</span>
         </a>
 
         <a
           href={`https://wa.me/${person.whatsapp}`}
           target="_blank"
           rel="noreferrer"
-          className="morph-hover flex items-center gap-3 px-4 py-3 rounded-2xl border border-[var(--border-glass)] bg-[var(--bg-glass-regular)] text-[var(--text-h)] backdrop-blur"
+          className="btn btn-glass morph-hover w-full px-5 py-3.5 text-sm"
         >
           <MessageCircle size={18} />
           Chat on WhatsApp
@@ -60,7 +56,7 @@ export default function Contact() {
         <button
           type="button"
           onClick={copyEmail}
-          className="morph-hover flex items-center gap-3 px-4 py-3 rounded-2xl border border-[var(--border-glass)] bg-[var(--bg-glass-regular)] text-[var(--text-h)] text-left backdrop-blur"
+          className="btn btn-glass morph-hover w-full px-5 py-3.5 text-sm"
         >
           {copied ? <Check size={18} /> : <Copy size={18} />}
           {copied ? "Copied" : "Copy email address"}
@@ -70,7 +66,7 @@ export default function Contact() {
           href={person.github}
           target="_blank"
           rel="noreferrer"
-          className="morph-hover flex items-center gap-3 px-4 py-3 rounded-2xl border border-[var(--border-glass)] bg-[var(--bg-glass-regular)] text-[var(--text-h)] backdrop-blur"
+          className="btn btn-glass morph-hover w-full px-5 py-3.5 text-sm"
         >
           <Link size={18} />
           {person.githubHandle}

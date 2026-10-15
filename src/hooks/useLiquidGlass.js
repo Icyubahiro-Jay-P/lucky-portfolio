@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import { LiquidGlass } from "@ybouane/liquidglass";
 
+// Environment-level detection, so memoize: creating a probe WebGL context is
+// expensive and every extra one counts against the browser's ~16-context cap
+// (Chrome drops the oldest live context once exceeded, which kills the real
+// LiquidGlass renderer). Called once per page load, not once per panel.
+let cachedGlassMode = null;
+
 function detectGlassMode() {
+  if (cachedGlassMode) return cachedGlassMode;
   if (typeof window === "undefined") {
     return { supportsGlass: false, isNarrow: false, reducedMotion: true };
   }
@@ -17,15 +24,18 @@ function detectGlassMode() {
   let hasWebGL;
   try {
     const canvas = document.createElement("canvas");
-    hasWebGL = !!(
-      canvas.getContext("webgl") || canvas.getContext("experimental-webgl")
-    );
+    const gl =
+      canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+    hasWebGL = !!gl;
+    // Free the probe context right away so it never occupies a context slot.
+    gl?.getExtension("WEBGL_lose_context")?.loseContext();
   } catch {
     hasWebGL = false;
   }
 
   const supportsGlass = hasWebGL && !reducedTransparency && !moreContrast;
-  return { supportsGlass, isNarrow, reducedMotion };
+  cachedGlassMode = { supportsGlass, isNarrow, reducedMotion };
+  return cachedGlassMode;
 }
 
 // Decided once on mount, not hot-swapped on resize (avoids re-init churn).

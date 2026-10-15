@@ -1,355 +1,163 @@
 @import "tailwindcss";
 
-/* iOS 26/27 Material tokens - Liquid Glass adaptive system */
+/* Palette taken from the portrait: espresso shirt, camel jacket.
+   Appearance follows the system only (no in-app toggle). Contrast on surface:
+   content 17.2:1 / 16.7:1, secondary 8.7:1 / 6.6:1, accent label 9.3:1 / 5.0:1. */
 :root {
-  --bg: #05070d;
-  --bg-elevated: #10151d;
-  --bg-glass-regular: rgba(16, 21, 29, 0.78);
-  --bg-glass-clear: rgba(16, 21, 29, 0.42);
-  --bg-glass-tinted: rgba(14, 26, 32, 0.86);
-  --text: #cfd6e2;
-  --text-h: #ffffff;
-  --text-dim: #8e99ad;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-glass: rgba(255, 255, 255, 0.16);
-  --accent: #2dd4bf;
-  --accent-soft: rgba(45, 212, 191, 0.16);
-  --highlight: rgba(255, 255, 255, 0.12);
-  --shadow-glass: 0 10px 40px -12px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255,255,255,0.12) inset, 0 0 0 0.5px rgba(255,255,255,0.05) inset;
-  --radius-pill: 999px;
-  --radius-xl: 32px;
-  --radius-lg: 24px;
-  --ease-ios: cubic-bezier(0.2, 0, 0, 1);
-  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
-  --duration-fast: 180ms;
-  --duration-morph: 420ms;
-
-  font: 16px/1.6 "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display",
-    "SF Pro Text", system-ui, sans-serif;
-  font-optical-sizing: auto;
-  color-scheme: dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --surface: #f6f3ee;
+  --surface-raised: #ffffff;
+  --content: #17130f;
+  --secondary: #5e554c;
+  --separator: rgba(0, 0, 0, 0.1);
+  --accent: #8a6a43;
+  --on-accent: #ffffff;
+  --fill: rgba(0, 0, 0, 0.06);
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface: #0f0d0b;
+    --surface-raised: #1a1714;
+    --content: #f5f1eb;
+    --secondary: #b5aca1;
+    --separator: rgba(255, 255, 255, 0.12);
+    --accent: #d4b48c;
+    --on-accent: #1a140e;
+    --fill: rgba(255, 255, 255, 0.08);
+  }
 }
 
-/* Light appearance - iOS 26 adaptive tint (system-driven) */
-:root[data-theme="light"] {
-  --bg: #f2f4f8;
-  --bg-elevated: #ffffff;
-  --bg-glass-regular: rgba(255, 255, 255, 0.78);
-  --bg-glass-clear: rgba(255, 255, 255, 0.46);
-  --bg-glass-tinted: rgba(237, 248, 246, 0.88);
-  --text: #3a4556;
-  --text-h: #0a0e14;
-  --text-dim: #6b778a;
-  --border: rgba(10, 14, 20, 0.06);
-  --border-glass: rgba(10, 14, 20, 0.12);
-  --accent: #0d9488;
-  --accent-soft: rgba(13, 148, 136, 0.14);
-  --highlight: rgba(255, 255, 255, 0.88);
-  --shadow-glass: 0 12px 44px -16px rgba(10, 14, 20, 0.18), 0 1px 0 rgba(255,255,255,0.96) inset, 0 0 0 0.5px rgba(255,255,255,0.8) inset;
-  color-scheme: light;
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --color-surface: var(--surface);
+  --color-raised: var(--surface-raised);
+  --color-content: var(--content);
+  --color-secondary: var(--secondary);
+  --color-separator: var(--separator);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-fill: var(--fill);
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* iOS 27 opacity slider - user preference overrides */
-:root[data-liquid-glass="clear"] {
-  --bg-glass-regular: rgba(16, 21, 29, 0.42);
-  --bg-glass-tinted: rgba(14, 26, 32, 0.52);
-}
-:root[data-liquid-glass="clear"][data-theme="light"] {
-  --bg-glass-regular: rgba(255, 255, 255, 0.46);
-  --bg-glass-tinted: rgba(237, 248, 246, 0.52);
-}
-:root[data-liquid-glass="tinted"] {
-  --bg-glass-regular: rgba(16, 21, 29, 0.84);
-  --bg-glass-tinted: rgba(14, 26, 32, 0.92);
-}
-:root[data-liquid-glass="tinted"][data-theme="light"] {
-  --bg-glass-regular: rgba(255, 255, 255, 0.88);
-  --bg-glass-tinted: rgba(237, 248, 246, 0.94);
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    background: var(--surface);
+    color: var(--content);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.55;
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  h1,
+  h2,
+  h3,
+  p {
+    margin: 0;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+  [id] {
+    scroll-margin-top: 24px;
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-}
-
-body {
-  margin: 0;
-  background: var(--bg);
-  overflow-x: hidden;
-}
-
-::selection {
-  background: var(--accent-soft);
-  color: var(--text-h);
-}
-
-[id] {
-  scroll-margin-top: 96px;
-}
-
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-  border-radius: 6px;
-}
-:focus:not(:focus-visible) {
-  outline: none;
-}
-
-/* Thin, translucent scrollbar keeps the page feeling native. */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-glass) transparent;
-}
-*::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-*::-webkit-scrollbar-thumb {
-  background: var(--border-glass);
-  border-radius: 999px;
-  border: 3px solid transparent;
-  background-clip: content-box;
-}
-
-/* Tailwind v4 puts utilities in a cascade layer, so unlayered rules here
-   would always beat utility classes regardless of selector specificity.
-   Keeping these in @layer base lets utilities override them normally. */
-@layer base {
-  h1, h2, h3 {
-    color: var(--text-h);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin: 0;
-  }
-
-  p {
-    margin: 0;
-  }
-
-  a {
-    color: inherit;
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
   }
 }
 
-/* Fallback for prefers-reduced-transparency, prefers-contrast, no-WebGL,
-    and degraded elements on small viewports: a plain CSS "glass" look with
-    no WebGL cost. Performance: single backdrop-filter, no nested blur. */
-.glass-lite {
-  background: var(--bg-glass-regular);
-  backdrop-filter: blur(24px) saturate(180%) contrast(105%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%) contrast(105%);
-  border: 1px solid var(--border-glass);
-  box-shadow: var(--shadow-glass);
-  position: relative;
-}
-/* Specular edge highlight - iOS 26 highlight layer */
-.glass-lite::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(120% 100% at 50% 0%, var(--highlight) 0%, transparent 70%);
-  pointer-events: none;
-  opacity: 0.98;
-}
-/* Subtler inner rim for depth */
-.glass-lite::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, transparent 40%);
-  pointer-events: none;
-  mix-blend-mode: screen;
-  opacity: 0.5;
+/* Section route label: the real URL fragment, set in the utility face. */
+.route {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--secondary);
 }
 
-/* iOS 26/27 morph - fluid, not jelly. Replaces wobble with Apple-like lift+scale+shadow */
-@media (prefers-reduced-motion: no-preference) {
-  .morph-hover {
-    transition:
-      transform var(--duration-morph) var(--ease-spring),
-      background-color var(--duration-fast) var(--ease-ios),
-      box-shadow var(--duration-morph) var(--ease-spring),
-      border-color var(--duration-fast) var(--ease-ios),
-      opacity var(--duration-fast) var(--ease-ios);
-    will-change: transform;
-  }
-  .morph-hover:hover,
-  .morph-hover:focus-visible {
-    transform: translateY(-2px) scale(1.014);
-    box-shadow: 0 16px 40px -14px rgba(0,0,0,0.28), 0 1px 0 rgba(255,255,255,0.14) inset;
-  }
-  .morph-hover:active {
-    transform: translateY(0) scale(0.99);
-    transition-duration: 120ms;
-  }
-  /* Glass panels morph - border and shadow react, content peeks */
-  .glass-morph {
-    transition:
-      transform var(--duration-morph) var(--ease-spring),
-      box-shadow var(--duration-morph) var(--ease-spring),
-      border-color var(--duration-fast) var(--ease-ios);
-  }
-  .glass-morph:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 20px 52px -18px rgba(0,0,0,0.36), 0 1px 0 rgba(255,255,255,0.16) inset, 0 0 0 0.5px rgba(255,255,255,0.06) inset;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .morph-hover:hover,
-  .glass-morph:hover {
-    transform: none;
-  }
-}
-
-/* Popover entrance - rises and settles from the anchored corner */
-@keyframes glass-pop {
+/* The one load moment: the name settles in. */
+@keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(8px) scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(12px);
   }
 }
-.glass-pop {
-  transform-origin: bottom right;
-  animation: glass-pop 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+.rise {
+  animation: rise 700ms var(--ease-out-soft) both;
 }
-@media (prefers-reduced-motion: reduce) {
-  .glass-pop {
-    animation: none;
+
+/* Glass bar without WebGL: CSS material that keeps the same shape. */
+.bar-fallback {
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  backdrop-filter: blur(24px) saturate(1.4);
+  border: 1px solid var(--separator);
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.35);
+}
+/* Reduce Transparency / Increase Contrast: opaque, with a defined edge. */
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .bar-fallback {
+    background: var(--surface-raised);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border-color: var(--content);
   }
 }
 
-/* iOS 26/27 squircle icon container - multi-layer glass */
-.icon-squircle {
-  border-radius: 16px;
-  background: var(--bg-glass-regular);
-  backdrop-filter: blur(18px) saturate(170%) contrast(104%);
-  -webkit-backdrop-filter: blur(18px) saturate(170%) contrast(104%);
-  border: 1px solid var(--border-glass);
-  box-shadow: var(--shadow-glass);
-  position: relative;
-  overflow: hidden;
-}
-.icon-squircle::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(120% 120% at 50% 0%, var(--highlight) 0%, transparent 64%);
+/* Scroll edge effect: content fades out where it meets the floating bar.
+   Lives outside the glass root so the shader refracts the content itself. */
+.edge-fade {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 40;
+  height: calc(104px + env(safe-area-inset-bottom));
   pointer-events: none;
+  background: linear-gradient(to top, var(--surface) 15%, transparent);
+  transition: opacity 300ms ease;
 }
 
-/* Section label - iOS 26 sf small caps tracking */
-.eyebrow {
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--accent);
+/* Hero is a media frame in both appearances: espresso base, portrait, and a
+   dark scrim so white type and clear glass both read over the photo. */
+.hero-scrim {
+  background: linear-gradient(
+    to top,
+    rgba(15, 13, 11, 0.96) 0%,
+    rgba(15, 13, 11, 0.82) 38%,
+    rgba(15, 13, 11, 0.4) 58%,
+    rgba(15, 13, 11, 0) 78%
+  );
 }
-.eyebrow::before {
-  content: "";
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  margin-right: 0.55rem;
-  vertical-align: middle;
-  border-radius: 999px;
-  background: var(--accent);
-  box-shadow: 0 0 10px 1px var(--accent-soft);
-}
-
-/* Premium display text - soft top-lit gradient like Apple's marketing pages */
-.text-gradient {
-  background: linear-gradient(180deg, #ffffff 0%, #c3cbd9 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-:root[data-theme="light"] .text-gradient {
-  background: linear-gradient(180deg, #0a0e14 0%, #47536a 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
-/* Buttons - shared premium shell, two material tiers */
-.btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  border-radius: 18px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  border: 1px solid transparent;
-}
-.btn-primary {
-  background: linear-gradient(180deg, #5eead4 0%, var(--accent) 100%);
-  color: #04241f;
-  border-color: rgba(255, 255, 255, 0.35);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.55) inset,
-    0 -6px 14px -8px rgba(4, 36, 31, 0.5) inset,
-    0 12px 32px -14px rgba(45, 212, 191, 0.85);
-}
-.btn-glass {
-  background: var(--bg-glass-regular);
-  color: var(--text-h);
-  border-color: var(--border-glass);
-  backdrop-filter: blur(20px) saturate(170%) contrast(104%);
-  -webkit-backdrop-filter: blur(20px) saturate(170%) contrast(104%);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.10) inset,
-    0 8px 26px -16px rgba(0, 0, 0, 0.55);
-}
-
-/* Slider custom - iOS 27 continuous glass opacity */
-.ios-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 4px;
-  border-radius: 999px;
-  background: var(--border);
-  outline: none;
-}
-.ios-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-glass);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.18);
-  cursor: pointer;
-}
-.ios-slider::-moz-range-thumb {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-glass);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.18);
-  cursor: pointer;
+@media (min-width: 1024px) {
+  .hero-scrim {
+    background:
+      linear-gradient(to right, #0f0d0b 39%, rgba(15, 13, 11, 0.55) 50%, rgba(15, 13, 11, 0) 66%),
+      linear-gradient(to top, #0f0d0b 0%, rgba(15, 13, 11, 0) 28%);
+  }
 }

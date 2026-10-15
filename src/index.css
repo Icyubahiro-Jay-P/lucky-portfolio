@@ -2,7 +2,7 @@
 
 /* iOS 26/27 Material tokens - Liquid Glass adaptive system */
 :root {
-  --bg: #0a0e14;
+  --bg: #05070d;
   --bg-elevated: #10151d;
   --bg-glass-regular: rgba(16, 21, 29, 0.78);
   --bg-glass-clear: rgba(16, 21, 29, 0.42);
@@ -24,7 +24,9 @@
   --duration-fast: 180ms;
   --duration-morph: 420ms;
 
-  font: 16px/1.5 -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+  font: 16px/1.6 "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "SF Pro Text", system-ui, sans-serif;
+  font-optical-sizing: auto;
   color-scheme: dark;
   color: var(--text);
   background: var(--bg);
@@ -75,10 +77,53 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   margin: 0;
   background: var(--bg);
   overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--text-h);
+}
+
+[id] {
+  scroll-margin-top: 96px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Thin, translucent scrollbar keeps the page feeling native. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-glass) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--border-glass);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
 }
 
 /* Tailwind v4 puts utilities in a cascade layer, so unlayered rules here
@@ -196,11 +241,67 @@ body {
 
 /* Section label - iOS 26 sf small caps tracking */
 .eyebrow {
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 600;
   color: var(--accent);
+}
+.eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 10px 1px var(--accent-soft);
+}
+
+/* Premium display text - soft top-lit gradient like Apple's marketing pages */
+.text-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, #c3cbd9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+:root[data-theme="light"] .text-gradient {
+  background: linear-gradient(180deg, #0a0e14 0%, #47536a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Buttons - shared premium shell, two material tiers */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border: 1px solid transparent;
+}
+.btn-primary {
+  background: linear-gradient(180deg, #5eead4 0%, var(--accent) 100%);
+  color: #04241f;
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.55) inset,
+    0 -6px 14px -8px rgba(4, 36, 31, 0.5) inset,
+    0 12px 32px -14px rgba(45, 212, 191, 0.85);
+}
+.btn-glass {
+  background: var(--bg-glass-regular);
+  color: var(--text-h);
+  border-color: var(--border-glass);
+  backdrop-filter: blur(20px) saturate(170%) contrast(104%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%) contrast(104%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.10) inset,
+    0 8px 26px -16px rgba(0, 0, 0, 0.55);
 }
 
 /* Slider custom - iOS 27 continuous glass opacity */

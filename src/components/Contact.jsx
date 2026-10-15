@@ -1,7 +1,10 @@
 import { useState } from "react";
-import { Mail, MessageCircle, Copy, Check, Link } from "lucide-react";
-import GlassPanel from "./GlassPanel";
+import { MessageCircle, Copy, Check, Code, FileText } from "lucide-react";
+import Section from "./Section";
 import { person } from "../data/content";
+
+const row =
+  "flex min-h-11 items-center gap-3 border-t border-separator py-3 text-content hover:text-accent transition-colors";
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
@@ -12,66 +15,53 @@ export default function Contact() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Clipboard API unavailable; mailto/manual copy still works.
+      // Clipboard API unavailable; the mailto link still works.
     }
   }
 
   return (
-    <>
-      <section
-        id="contact"
-        className="relative z-10 px-6 pt-24 pb-8 flex flex-col items-center"
+    <Section id="contact" title="Let's build something that has to work.">
+      <a
+        href={`mailto:${person.email}`}
+        className="block break-all text-[clamp(1.25rem,5vw,2.25rem)] font-semibold tracking-[-0.025em] text-content underline decoration-separator decoration-2 underline-offset-[6px] hover:decoration-accent"
       >
-        <p className="eyebrow mb-4 text-center">Establish a connection</p>
-        <h2 className="text-gradient text-[clamp(1.7rem,4.5vw,2.5rem)] leading-[1.12] tracking-[-0.03em] font-semibold mb-10 max-w-lg text-center text-balance">
-          Let&apos;s build something that has to work.
-        </h2>
-      </section>
+        {person.email}
+      </a>
 
-      <GlassPanel
-        tier="primary"
-        variant="regular"
-        glassMorph
-        config={{ cornerRadius: 30, zRadius: 26 }}
-        className="relative z-10 w-full max-w-md mx-auto mb-10 p-4 sm:p-5 flex flex-col gap-3"
-      >
-        <a
-          href={`mailto:${person.email}`}
-          className="btn btn-primary morph-hover w-full px-5 py-3.5 text-sm"
-        >
-          <Mail size={18} />
-          <span className="truncate">{person.email}</span>
-        </a>
-
-        <a
-          href={`https://wa.me/${person.whatsapp}`}
-          target="_blank"
-          rel="noreferrer"
-          className="btn btn-glass morph-hover w-full px-5 py-3.5 text-sm"
-        >
-          <MessageCircle size={18} />
-          Chat on WhatsApp
-        </a>
-
-        <button
-          type="button"
-          onClick={copyEmail}
-          className="btn btn-glass morph-hover w-full px-5 py-3.5 text-sm"
-        >
-          {copied ? <Check size={18} /> : <Copy size={18} />}
-          {copied ? "Copied" : "Copy email address"}
-        </button>
-
-        <a
-          href={person.github}
-          target="_blank"
-          rel="noreferrer"
-          className="btn btn-glass morph-hover w-full px-5 py-3.5 text-sm"
-        >
-          <Link size={18} />
-          {person.githubHandle}
-        </a>
-      </GlassPanel>
-    </>
+      <ul className="mt-10 border-b border-separator">
+        <li>
+          <a href={`https://wa.me/${person.whatsapp}`} target="_blank" rel="noreferrer" className={row}>
+            <MessageCircle size={20} aria-hidden="true" className="text-secondary" />
+            Chat on WhatsApp
+          </a>
+        </li>
+        <li>
+          <a href={person.github} target="_blank" rel="noreferrer" className={row}>
+            <Code size={20} aria-hidden="true" className="text-secondary" />
+            <span className="font-mono text-[15px]">{person.githubHandle}</span>
+          </a>
+        </li>
+        <li>
+          <a href={person.cv} download className={row}>
+            <FileText size={20} aria-hidden="true" className="text-secondary" />
+            Download CV (PDF)
+          </a>
+        </li>
+        <li>
+          <button
+            type="button"
+            onClick={copyEmail}
+            className={`${row} w-full cursor-pointer bg-transparent border-x-0 border-b-0 text-left font-[inherit] text-[17px]`}
+          >
+            {copied ? (
+              <Check size={20} aria-hidden="true" className="text-accent" />
+            ) : (
+              <Copy size={20} aria-hidden="true" className="text-secondary" />
+            )}
+            <span aria-live="polite">{copied ? "Email address copied" : "Copy email address"}</span>
+          </button>
+        </li>
+      </ul>
+    </Section>
   );
 }

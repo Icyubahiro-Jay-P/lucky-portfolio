@@ -1,21 +1,36 @@
-import { person } from "../data/content";
-import GlassPanel from "./GlassPanel";
+import Section from "./Section";
+import { person, education, certifications } from "../data/content";
 
 export default function About() {
   return (
-    <section id="about" className="relative z-10 px-6 py-20 max-w-2xl mx-auto">
-      <p className="eyebrow text-center mb-7">The process behind the interface</p>
-      <GlassPanel
-        tier="secondary"
-        variant="regular"
-        glassMorph
-        config={{ cornerRadius: 32 }}
-        className="p-8 sm:p-11 text-center"
-      >
-        <p className="text-[1.25rem] sm:text-[1.4rem] leading-[1.72] tracking-[-0.01em] text-[var(--text-h)] text-pretty">
-          {person.summary}
-        </p>
-      </GlassPanel>
-    </section>
+    <Section id="about" title="Backend first, hardware at heart.">
+      <p className="text-[20px] sm:text-[24px] leading-[1.45] tracking-[-0.015em] text-content text-pretty">
+        {person.summary}
+      </p>
+
+      <div className="mt-14 grid gap-10 sm:grid-cols-2">
+        <div>
+          <h3 className="text-[15px] font-semibold text-secondary mb-3">Education</h3>
+          <ul className="divide-y divide-separator border-t border-separator">
+            {education.map((e) => (
+              <li key={e.school} className="py-3">
+                <p className="font-medium text-content">{e.school}</p>
+                <p className="text-[15px] text-secondary">{e.detail}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3 className="text-[15px] font-semibold text-secondary mb-3">Certifications</h3>
+          <ul className="divide-y divide-separator border-t border-separator">
+            {certifications.map((c) => (
+              <li key={c} className="py-3 text-content">
+                {c}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </Section>
   );
 }

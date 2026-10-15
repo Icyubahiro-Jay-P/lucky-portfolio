@@ -9,10 +9,10 @@ export default function About() {
         tier="secondary"
         variant="regular"
         glassMorph
-        config={{ cornerRadius: 28, blurAmount: 0.22, brightness: -0.06 }}
-        className="p-6 sm:p-8 text-center"
+        config={{ cornerRadius: 32, blurAmount: 0.24, brightness: -0.04, saturation: 0.06 }}
+        className="p-8 sm:p-10 text-center"
       >
-        <p className="text-xl sm:text-2xl leading-relaxed text-[var(--text-h)]">
+        <p className="text-xl sm:text-[1.375rem] leading-[1.7] tracking-tight text-[var(--text-h)]">
           {person.summary}
         </p>
       </GlassPanel>

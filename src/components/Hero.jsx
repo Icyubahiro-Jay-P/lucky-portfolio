@@ -20,7 +20,7 @@ export default function Hero() {
         </div>
         <h1
           className="text-[clamp(2rem,7vw,3.75rem)] leading-[0.95] tracking-[-0.04em] font-semibold mb-4 text-[var(--text-h)]"
-          style={{ fontVariationSettings: '"wght" 620, "wdth" 102' }}
+          style={{ fontVariationSettings: '"wght" 660, "wdth" 104' }}
         >
           {person.name}
         </h1>
@@ -37,24 +37,24 @@ export default function Hero() {
         variant="clear"
         glassMorph
         config={{
-          cornerRadius: 28,
-          blurAmount: 0.22,
-          brightness: -0.06,
-          saturation: 0.04,
+          cornerRadius: 32,
+          blurAmount: 0.24,
+          brightness: -0.04,
+          saturation: 0.06,
         }}
-        className="relative z-10 mx-6 sm:mx-auto max-w-md -mt-24 sm:-mt-32 mb-24 flex flex-col sm:flex-row gap-3 p-4"
+        className="relative z-10 mx-6 sm:mx-auto max-w-lg -mt-20 sm:-mt-28 mb-24 flex flex-col sm:flex-row items-stretch gap-3 p-4"
       >
         <a
           href="#projects"
-          className="morph-hover flex items-center justify-center gap-2 flex-1 px-5 py-3 rounded-2xl bg-[var(--accent)] text-[#04241f] font-semibold shadow-sm"
+          className="morph-hover group flex items-center justify-center gap-2 flex-1 px-6 py-3.5 rounded-2xl bg-[var(--accent)] text-[#04241f] font-semibold shadow-[0_8px_40px_-18px_rgba(45,212,191,0.9)] ring-1 ring-white/20"
         >
-          View Projects <ArrowRight size={16} />
+          View Projects <ArrowRight size={18} className="transition-transform group-hover:translate-x-0.5" />
         </a>
         <a
           href="#contact"
-          className="morph-hover flex items-center justify-center gap-2 flex-1 px-5 py-3 rounded-2xl border border-[var(--border-glass)] bg-[var(--bg-glass-regular)] text-[var(--text-h)] font-medium backdrop-blur"
+          className="morph-hover group flex items-center justify-center gap-2 flex-1 px-6 py-3.5 rounded-2xl border border-[var(--border-glass)] bg-[var(--bg-glass-regular)]/90 text-[var(--text-h)] font-medium"
         >
-          Get in Touch <Mail size={16} />
+          Get in Touch <Mail size={18} className="opacity-90 group-hover:scale-[1.02] transition-transform" />
         </a>
       </GlassPanel>
     </>

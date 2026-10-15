@@ -34,12 +34,11 @@ export default function Nav() {
       glassMorph
       config={{
         cornerRadius: 999,
-        blurAmount: 0.26,
-        brightness: -0.08,
-        saturation: 0.06,
+        blurAmount: 0.28,
+        brightness: -0.06,
+        saturation: 0.08,
       }}
-      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 px-2 py-2 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] will-change-transform ${compact ? "scale-[0.96] py-1.5 shadow-lg" : "scale-100"}`}
-      aria-label="Primary"
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 px-2.5 py-2 transition-all duration-500 ease-[cubic-bezier(0.2,0,0,1)] will-change-transform ${compact ? "scale-[0.98] py-1.5" : "scale-100"}`}
     >
       <a
         href="#top"

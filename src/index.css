@@ -4,21 +4,21 @@
 :root {
   --bg: #0a0e14;
   --bg-elevated: #10151d;
-  --bg-glass-regular: rgba(16, 21, 29, 0.72);
-  --bg-glass-clear: rgba(16, 21, 29, 0.38);
-  --bg-glass-tinted: rgba(14, 26, 32, 0.78);
-  --text: #c7ccd6;
-  --text-h: #f4f6fa;
-  --text-dim: #7a8494;
+  --bg-glass-regular: rgba(16, 21, 29, 0.78);
+  --bg-glass-clear: rgba(16, 21, 29, 0.42);
+  --bg-glass-tinted: rgba(14, 26, 32, 0.86);
+  --text: #cfd6e2;
+  --text-h: #ffffff;
+  --text-dim: #8e99ad;
   --border: rgba(255, 255, 255, 0.08);
-  --border-glass: rgba(255, 255, 255, 0.14);
+  --border-glass: rgba(255, 255, 255, 0.16);
   --accent: #2dd4bf;
-  --accent-soft: rgba(45, 212, 191, 0.15);
-  --highlight: rgba(255, 255, 255, 0.1);
-  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255,255,255,0.08) inset;
+  --accent-soft: rgba(45, 212, 191, 0.16);
+  --highlight: rgba(255, 255, 255, 0.12);
+  --shadow-glass: 0 10px 40px -12px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255,255,255,0.12) inset, 0 0 0 0.5px rgba(255,255,255,0.05) inset;
   --radius-pill: 999px;
-  --radius-xl: 28px;
-  --radius-lg: 20px;
+  --radius-xl: 32px;
+  --radius-lg: 24px;
   --ease-ios: cubic-bezier(0.2, 0, 0, 1);
   --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
   --duration-fast: 180ms;
@@ -38,18 +38,18 @@
 :root[data-theme="light"] {
   --bg: #f2f4f8;
   --bg-elevated: #ffffff;
-  --bg-glass-regular: rgba(255, 255, 255, 0.72);
-  --bg-glass-clear: rgba(255, 255, 255, 0.42);
-  --bg-glass-tinted: rgba(237, 248, 246, 0.82);
+  --bg-glass-regular: rgba(255, 255, 255, 0.78);
+  --bg-glass-clear: rgba(255, 255, 255, 0.46);
+  --bg-glass-tinted: rgba(237, 248, 246, 0.88);
   --text: #3a4556;
   --text-h: #0a0e14;
   --text-dim: #6b778a;
-  --border: rgba(10, 14, 20, 0.08);
-  --border-glass: rgba(10, 14, 20, 0.1);
+  --border: rgba(10, 14, 20, 0.06);
+  --border-glass: rgba(10, 14, 20, 0.12);
   --accent: #0d9488;
-  --accent-soft: rgba(13, 148, 136, 0.12);
-  --highlight: rgba(255, 255, 255, 0.7);
-  --shadow-glass: 0 8px 32px rgba(10, 14, 20, 0.08), 0 1px 0 rgba(255,255,255,0.9) inset;
+  --accent-soft: rgba(13, 148, 136, 0.14);
+  --highlight: rgba(255, 255, 255, 0.88);
+  --shadow-glass: 0 12px 44px -16px rgba(10, 14, 20, 0.18), 0 1px 0 rgba(255,255,255,0.96) inset, 0 0 0 0.5px rgba(255,255,255,0.8) inset;
   color-scheme: light;
 }
 
@@ -106,8 +106,8 @@ body {
     no WebGL cost. Performance: single backdrop-filter, no nested blur. */
 .glass-lite {
   background: var(--bg-glass-regular);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(180%) contrast(105%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%) contrast(105%);
   border: 1px solid var(--border-glass);
   box-shadow: var(--shadow-glass);
   position: relative;
@@ -118,9 +118,20 @@ body {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(180deg, var(--highlight) 0%, transparent 32%);
+  background: radial-gradient(120% 100% at 50% 0%, var(--highlight) 0%, transparent 70%);
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 0.98;
+}
+/* Subtler inner rim for depth */
+.glass-lite::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, transparent 40%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.5;
 }
 
 /* iOS 26/27 morph - fluid, not jelly. Replaces wobble with Apple-like lift+scale+shadow */
@@ -136,8 +147,8 @@ body {
   }
   .morph-hover:hover,
   .morph-hover:focus-visible {
-    transform: translateY(-1px) scale(1.012);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.22), 0 1px 0 rgba(255,255,255,0.12) inset;
+    transform: translateY(-2px) scale(1.014);
+    box-shadow: 0 16px 40px -14px rgba(0,0,0,0.28), 0 1px 0 rgba(255,255,255,0.14) inset;
   }
   .morph-hover:active {
     transform: translateY(0) scale(0.99);
@@ -151,8 +162,8 @@ body {
       border-color var(--duration-fast) var(--ease-ios);
   }
   .glass-morph:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.32), 0 1px 0 rgba(255,255,255,0.14) inset;
+    transform: translateY(-3px);
+    box-shadow: 0 20px 52px -18px rgba(0,0,0,0.36), 0 1px 0 rgba(255,255,255,0.16) inset, 0 0 0 0.5px rgba(255,255,255,0.06) inset;
   }
 }
 
@@ -165,8 +176,10 @@ body {
 
 /* iOS 26/27 squircle icon container - multi-layer glass */
 .icon-squircle {
-  border-radius: 14px;
+  border-radius: 16px;
   background: var(--bg-glass-regular);
+  backdrop-filter: blur(18px) saturate(170%) contrast(104%);
+  -webkit-backdrop-filter: blur(18px) saturate(170%) contrast(104%);
   border: 1px solid var(--border-glass);
   box-shadow: var(--shadow-glass);
   position: relative;
@@ -177,7 +190,7 @@ body {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(180deg, var(--highlight) 0%, transparent 45%);
+  background: radial-gradient(120% 120% at 50% 0%, var(--highlight) 0%, transparent 64%);
   pointer-events: none;
 }
 

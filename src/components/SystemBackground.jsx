@@ -75,6 +75,7 @@ export default function SystemBackground({ reducedMotion }) {
     let height = 0;
     let raf;
     let noiseTile = null;
+    let noisePattern = null;
 
     // A tiny pre-rendered grain tile keeps the field from banding across
     // large gradients without paying a per-pixel cost each frame.
@@ -90,6 +91,9 @@ export default function SystemBackground({ reducedMotion }) {
       }
       tctx.putImageData(img, 0, 0);
       noiseTile = tile;
+      // Build the repeat pattern once; recreating it per frame is a needless
+      // allocation on the 60fps path.
+      noisePattern = ctx.createPattern(noiseTile, "repeat");
     }
 
     function resize() {
@@ -154,11 +158,10 @@ export default function SystemBackground({ reducedMotion }) {
       ctx.fillStyle = vg;
       ctx.fillRect(0, 0, width, height);
 
-      if (noiseTile) {
-        const pattern = ctx.createPattern(noiseTile, "repeat");
+      if (noisePattern) {
         ctx.globalAlpha = isLight ? 0.02 : 0.035;
         ctx.globalCompositeOperation = "overlay";
-        ctx.fillStyle = pattern;
+        ctx.fillStyle = noisePattern;
         ctx.fillRect(0, 0, width, height);
         ctx.globalAlpha = 1;
         ctx.globalCompositeOperation = "source-over";

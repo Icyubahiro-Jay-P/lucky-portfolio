@@ -23,6 +23,7 @@ export default function GlassPanel({
     return (
       <Tag
         data-glass="true"
+        data-variant={variant}
         data-config={resolvedConfig ? JSON.stringify(resolvedConfig) : undefined}
         className={`${glassMorph ? "glass-morph " : ""}${className}`}
         {...rest}

@@ -219,6 +219,27 @@ body {
   }
 }
 
+/* Popover entrance - rises and settles from the anchored corner */
+@keyframes glass-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.glass-pop {
+  transform-origin: bottom right;
+  animation: glass-pop 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .glass-pop {
+    animation: none;
+  }
+}
+
 /* iOS 26/27 squircle icon container - multi-layer glass */
 .icon-squircle {
   border-radius: 16px;

@@ -30,7 +30,7 @@ export default function Contact() {
 
       <GlassPanel
         tier="primary"
-        variant="tinted"
+        variant="regular"
         glassMorph
         config={{ cornerRadius: 30, zRadius: 26 }}
         className="relative z-10 w-full max-w-md mx-auto mb-10 p-4 sm:p-5 flex flex-col gap-3"

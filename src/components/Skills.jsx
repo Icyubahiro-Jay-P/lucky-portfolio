@@ -1,5 +1,4 @@
 import { skillGroups } from "../data/content";
-import GlassPanel from "./GlassPanel";
 
 export default function Skills() {
   return (
@@ -7,13 +6,9 @@ export default function Skills() {
       <p className="eyebrow text-center mb-10">Stack</p>
       <div className="grid gap-4">
         {skillGroups.map((group) => (
-          <GlassPanel
+          <div
             key={group.label}
-            tier="secondary"
-            variant="regular"
-            glassMorph
-            config={{ cornerRadius: 26 }}
-            className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-6 p-5 sm:p-6"
+            className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-6 p-5 sm:p-6 rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm shadow-[0_10px_80px_-30px_rgba(0,0,0,0.6)] transition-transform duration-300 will-change-transform hover:scale-[1.01]"
           >
             <span className="shrink-0 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--text-dim)] sm:w-48 sm:pt-1.5">
               {group.label}
@@ -28,7 +23,7 @@ export default function Skills() {
                 </span>
               ))}
             </div>
-          </GlassPanel>
+          </div>
         ))}
       </div>
     </section>

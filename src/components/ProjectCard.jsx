@@ -1,5 +1,4 @@
 import { Wallet, BedDouble, ShoppingBag } from "lucide-react";
-import GlassPanel from "./GlassPanel";
 
 const ICONS = {
   epms: Wallet,
@@ -11,14 +10,7 @@ export default function ProjectCard({ project, index, total }) {
   const Icon = ICONS[project.id];
 
   return (
-    <GlassPanel
-      as="article"
-      tier="secondary"
-      variant="regular"
-      glassMorph
-      config={{ cornerRadius: 28 }}
-      className="relative z-10 max-w-2xl mx-auto mb-7 p-6 sm:p-8"
-    >
+    <article className="relative z-10 max-w-2xl mx-auto mb-7 p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm shadow-[0_10px_80px_-30px_rgba(0,0,0,0.6)] transition-transform duration-300 will-change-transform hover:scale-[1.01]">
       <div className="flex items-start gap-5">
         <div className="icon-squircle shrink-0 w-11 h-11 flex items-center justify-center text-[var(--accent)]">
           <Icon size={20} strokeWidth={1.6} />
@@ -46,6 +38,6 @@ export default function ProjectCard({ project, index, total }) {
           </div>
         </div>
       </div>
-    </GlassPanel>
+    </article>
   );
 }

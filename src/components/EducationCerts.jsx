@@ -1,6 +1,5 @@
 import { GraduationCap, Award } from "lucide-react";
 import { education, certifications } from "../data/content";
-import GlassPanel from "./GlassPanel";
 
 function CardHead({ icon: Icon, children }) {
   return (
@@ -18,13 +17,7 @@ export default function EducationCerts() {
     <section className="relative z-10 px-6 py-20 max-w-2xl mx-auto">
       <p className="eyebrow text-center mb-10">Compiled from</p>
       <div className="grid sm:grid-cols-2 gap-4">
-        <GlassPanel
-          tier="secondary"
-          variant="regular"
-          glassMorph
-          config={{ cornerRadius: 26 }}
-          className="p-6"
-        >
+        <div className="p-6 rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm shadow-[0_10px_80px_-30px_rgba(0,0,0,0.6)] transition-transform duration-300 will-change-transform hover:scale-[1.01]">
           <CardHead icon={GraduationCap}>Education</CardHead>
           <ul className="space-y-4">
             {education.map((item) => (
@@ -36,15 +29,9 @@ export default function EducationCerts() {
               </li>
             ))}
           </ul>
-        </GlassPanel>
+        </div>
 
-        <GlassPanel
-          tier="secondary"
-          variant="regular"
-          glassMorph
-          config={{ cornerRadius: 26 }}
-          className="p-6"
-        >
+        <div className="p-6 rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-sm shadow-[0_10px_80px_-30px_rgba(0,0,0,0.6)] transition-transform duration-300 will-change-transform hover:scale-[1.01]">
           <CardHead icon={Award}>Certifications</CardHead>
           <ul className="space-y-3">
             {certifications.map((cert) => (
@@ -60,7 +47,7 @@ export default function EducationCerts() {
               </li>
             ))}
           </ul>
-        </GlassPanel>
+        </div>
       </div>
     </section>
   );
